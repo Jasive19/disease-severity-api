@@ -1,8 +1,9 @@
 from pathlib import Path
 import os
+import django_heroku
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = 'django-insecure-7w3p-#l02smkpog(!3a4!d^2xc&pz@_e20xwx8@67eecb%)jwn'
+#SECRET_KEY = 'django-insecure-7w3p-#l02smkpog(!3a4!d^2xc&pz@_e20xwx8@67eecb%)jwn'
 DEBUG = True
 ALLOWED_HOSTS = []
 
@@ -23,6 +24,7 @@ LOCAL_APPS = [
 ]
 
 EXTERNAL_APPS = [
+    'django_heroku',
     'rest_framework',
     'rest_framework.authtoken',
     # 'django_rest_passwordreset',
@@ -81,8 +83,14 @@ WSGI_APPLICATION = 'disease_severity.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd3ecj6p5uvp377',
+        'USER': 'ttvvtweteprkih',
+        'PASSWORD': '2728169ae34cc6f317b236cb61b38fd3a5c23db73498fb9acd511233f70d0f8b',
+        'HOST': 'ec2-44-206-89-185.compute-1.amazonaws.com',
+        'PORT': '5432',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -105,10 +113,11 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://192.168.1.69:3000",
+    "https://disease-severity-test.netlify.app"
 ]
 
 CORS_ORIGIN_WHITELIST = ["http://localhost:3000",
-                         "http://127.0.0.1:3000", "http://192.168.1.69:3000", ]
+                         "http://127.0.0.1:3000", "http://192.168.1.69:3000", "https://disease-severity-test.netlify.app",]
 CORS_ALLOW_CREDENTIALS = True
 
 LANGUAGE_CODE = 'es'
@@ -119,3 +128,4 @@ USE_L10N = True
 STATIC_URL = 'static/'
 
 MODELS = os.path.join(BASE_DIR, 'model')
+"import django_heroku" 
