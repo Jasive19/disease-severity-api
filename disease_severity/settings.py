@@ -1,9 +1,14 @@
 from pathlib import Path
 import os
 import django_heroku
+import environ
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 #SECRET_KEY = 'django-insecure-7w3p-#l02smkpog(!3a4!d^2xc&pz@_e20xwx8@67eecb%)jwn'
+SECRET_KEY = env('SECRET_KEY')
 DEBUG = True
 ALLOWED_HOSTS = []
 
@@ -84,10 +89,10 @@ WSGI_APPLICATION = 'disease_severity.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd3ecj6p5uvp377',
-        'USER': 'ttvvtweteprkih',
-        'PASSWORD': '2728169ae34cc6f317b236cb61b38fd3a5c23db73498fb9acd511233f70d0f8b',
-        'HOST': 'ec2-44-206-89-185.compute-1.amazonaws.com',
+        'NAME': env('DATABASE_NAME'),
+        'USER': env('USER'),
+        'PASSWORD': env('PASSWORD'),
+        'HOST': env('HOST'),
         'PORT': '5432',
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
